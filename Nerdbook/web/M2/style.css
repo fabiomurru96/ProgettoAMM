@@ -1,0 +1,98 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Mar 27, 2017, 3:09:30 PM
+    Author     : fabio
+*/
+
+@font-face {
+  font-family: 'Cabin';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Cabin'), local('Cabin-Regular'), url(https://fonts.gstatic.com/s/cabin/v10/yQOMOX5hR0-6LTD879t-PQ.woff2) format('woff2');
+}
+
+body{
+    background-color: #eCeeF1;
+    font: 15px/20px "Lato", "Open Sans", sans-serif;
+}
+
+header{
+    background-color: #00BBDC;
+}
+
+a:link, a:visited{
+    text-decoration: none;
+    color: #365899;
+}
+
+a:hover{
+    font-weight: 500;
+    text-decoration: underline;
+}
+
+nav{
+    font-size: 25px;
+    line-height:30px;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+nav a:link, nav a:visited{
+    color: #111111;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-decoration: none;
+    display: block;
+}
+
+nav ul, nav li{
+    list-style-type: none;
+    display: inline-block;
+}
+
+nav ul{
+    font-size: 0px;
+}
+
+nav li{
+    font-size: 25px;
+    border-right: 2px solid rgba(0,0,0,0.5);
+}
+
+nav a:hover{
+    background-color: rgba(0,0,0,0.1);
+} 
+
+nav li.active{
+    background-color: rgba(5,5,5,0.2);
+}
+
+nav li:last-child{
+    border-right: none;
+}
+
+#title{
+    font: 35px/60px 'Cabin', Lato, sans-serif;
+    padding: 5px;
+    vertical-align: middle;
+    display:inline-block;
+}
+
+h1{
+    font: 30px/35px "Lato", "Open Sans", sans-serif;
+    font-weight: bold;
+}
+
+h2{
+    font: 25px/30px "Lato", "Open Sans", sans-serif;
+    font-weight: bold;
+}
+
+h3{
+    font: 20px/25px "Lato", "Open Sans", sans-serif;
+    font-weight: bold;
+}
