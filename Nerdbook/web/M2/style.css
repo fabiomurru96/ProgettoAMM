@@ -21,10 +21,17 @@ body{
     margin: 0px;
 }
 
+.proPic img{
+    width: 100%;
+    height: auto;
+    top: 50%;
+    right: 50%;
+    transform: translate(-50%,-50%);
+}
+
 header{
     top: 0;
     z-index: 100;
-    text-align: justify;
     position: fixed;
     height: 50px;
     width: 100%;
@@ -68,6 +75,7 @@ nav{
     vertical-align: middle;
     display: inline-block;
     padding-right: 5px;
+    margin-left: 15px;
 }
 
 nav a:link, nav a:visited{
@@ -98,6 +106,24 @@ nav li.active{
     background-color: rgba(0,0,0,0.1);
 }
 
+#loggedUser{
+    color: #fff;
+    text-align: center;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translate(0,-50%);
+}
+
+#loggedUser .proPic{
+    height: 30px;
+    width: 30px;
+}
+
+#loggedUser a:link, #loggedUser a:visited{
+    
+}
+
 #divBody{
     position: relative;
     margin-top: 63px;
@@ -114,6 +140,7 @@ nav li.active{
 }
 
 .content{
+    max-width: 1000px;
     height: 100%;
     background-color: #ffffff;
     margin-left: 27%;
@@ -173,15 +200,12 @@ nav li.active{
 .postUserInfo .proPic{
     display: inline-block;
     vertical-align: middle;
+    width: 50px;
+    height: 50px;
 }
 
 p{
     margin: 0px;
-}
-
-.postType .proPic{
-    width: 50px;
-    height: 50px;
 }
 
 .postPic{
