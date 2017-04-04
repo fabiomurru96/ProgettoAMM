@@ -23,6 +23,12 @@ and open the template in the editor.
                     <li>
                         <a href="descrizione.html">Descrizione</a>
                     </li>
+                    <li class="active">
+                        <a href="profilo.html">Profilo</a>
+                    </li>
+                    <li>
+                        <a href="bacheca.html">Bacheca</a>
+                    </li>
                     <li>
                         <a href="login.html">Login</a>
                     </li>
@@ -30,38 +36,42 @@ and open the template in the editor.
             </nav>
         </header>
         <div id="divBody">
-            <div id="formdati">
-                <form action="#" method="post">
+            <div id="sideBar">
+                <div id="personeSide">
+                    <h2 class="sideTitle">Persone</h2>
                     <div>
-                        <label for="nome">Nome</label>
-                        <input id="nome" name="nome" type="text"/>
+                        <p>Mario Rossi</p>
+                        <p>Pinco Pallino</p>
                     </div>
+                </div>
+                <div id="gruppiSide">
+                    <h2 class="sideTitle">Gruppi</h2>
                     <div>
-                        <label for="cognome">Cognome</label>
-                        <input id="cognome" name="cognome" type="text"/>
+                        <p>ssasasasaasasas</p>
                     </div>
-                    <div>
-                        <label for="propic">Immagine profilo</label>
-                        <input id="propic" name="propic" type="url"/>
-                    </div>
-                    <div>
-                        <label for="status">Frase di presentazione</label>
-                        <textarea id="status" name="status" rows="2"></textarea>
-                    </div>
-                    <div>
-                        <label for="datanascita">Data di nascita</label>
-                        <input id="datanascita" name="datanascita" type="date"/>
-                    </div>
-                    <div>
-                        <label for="psswd">Password</label>
-                        <input id="psswd" name="psswd" type="password"/>
-                    </div>
-                    <div>
-                        <label for="confirmpss">Conferma password</label>
-                        <input id="confirmpss" name="confirmpss" type="password"/>
-                    </div>
-                    <button type="submit">Invia</button>
-                </form>
+                </div>
+            </div>
+            <div id="profileContent" class="content">
+                <div id="formdati">
+                    <img class="proPic" src="img/propic.png" alt="Foto profilo di Mario Rossi" title="Mario Rossi"/>
+                    <form action="#" method="post">
+                        <label for="nome" class="firstLabel">Nome</label>
+                            <input id="nome" name="nome" type="text"/>
+                            <label for="cognome">Cognome</label>
+                            <input id="cognome" name="cognome" type="text"/>
+                            <label for="propic">Immagine profilo</label>
+                            <input id="propic" name="propic" type="url"/>
+                            <label for="status">Frase di presentazione</label>
+                            <textarea id="status" name="status" rows="2"></textarea>
+                            <label for="datanascita">Data di nascita</label>
+                            <input id="datanascita" name="datanascita" type="date"/>
+                            <label for="psswd">Password</label>
+                            <input id="psswd" name="psswd" type="password"/>
+                            <label for="confirmpss">Conferma password</label>
+                            <input id="confirmpss" name="confirmpss" type="password"/>
+                        <button type="submit">Aggiorna</button>
+                    </form>
+                </div>
             </div>
         </div>
     </body>

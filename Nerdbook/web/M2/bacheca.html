@@ -25,32 +25,62 @@ and open the template in the editor.
                         <a href="descrizione.html">Descrizione</a>
                     </li>
                     <li>
-                        <a href="login.html">Login</a>
+                        <a href="profilo.html">Profilo</a>
                     </li>
                     <li class="active">
                         <a href="bacheca.html">Bacheca</a>
+                    </li>
+                    <li>
+                        <a href="login.html">Login</a>
                     </li>
                 </ul>
             </nav>
         </header>
         <div id="divBody">
-            <div id="posts">
-                <div id="post1">            
-                    <p>Mario Rossi</p>
-                    <img src="img/propic.png" alt="Foto profilo di Mario Rossi" title="Mario Rossi" width="60" height="60"/>
-                    <p>Ciao a tutti!</p>
+            <div id="sideBar">
+                <div id="personeSide">
+                    <h2 class="sideTitle">Persone</h2>
+                    <div>
+                        <p>Mario Rossi</p>
+                        <p>Pinco Pallino</p>
+                    </div>
                 </div>
-                <div id="post2">            
-                    <p>Mario Rossi</p>
-                    <img src="img/propic.png" alt="Foto profilo di Mario Rossi" title="Mario Rossi" width="60" height="60"/>
-                    <p>Wow, che bella foto!</p>
-                    <img src="img/Lorem-ipsum.jpg" alt="Foto allegato" width="500"/>
+                <div id="gruppiSide">
+                    <h2 class="sideTitle">Gruppi</h2>
+                    <div>
+                        <p>ssasasasaasasas</p>
+                    </div>
                 </div>
-                <div id="post3">            
-                    <p>Mario Rossi</p>
-                    <img src="img/propic.png" alt="Foto profilo di Mario Rossi" title="Mario Rossi" width="60" height="60"/>
-                    <p>Aprite!</p>
-                    <a href="http://www.google.it" target="_blank">http://www.google.it</a>
+            </div>
+            <div id="posts" class="content">
+                <div class="postType">            
+                    <div class="postUserInfo">
+                        <img class="proPic" src="img/propic.png" alt="Foto profilo di Mario Rossi" title="Mario Rossi"/>
+                        <p class="username">Mario Rossi</p>
+                    </div>
+                    <div class="postContent">
+                        <p>Ciao a tutti!</p>
+                    </div>
+                </div>
+                <div class="postType">            
+                    <div class="postUserInfo">
+                        <img class="proPic" src="img/propic.png" alt="Foto profilo di Mario Rossi" title="Mario Rossi"/>
+                        <p class="username">Mario Rossi</p>
+                    </div>
+                    <div class="postContent">
+                        <p>Wow, che bella foto!</p>
+                        <img class="postPic" src="img/Lorem-ipsum.jpg" alt="Foto allegato"/>
+                    </div>
+                </div>
+                <div class="postType">            
+                    <div class="postUserInfo">
+                        <img class="proPic" src="img/propic.png" alt="Foto profilo di Mario Rossi" title="Mario Rossi"/>
+                        <p class="username">Mario Rossi</p>
+                    </div>
+                    <div class="postContent">
+                        <p>Aprite!</p>
+                        <a href="http://www.google.it" target="_blank">http://www.google.it</a>
+                    </div>
                 </div>
             </div>
         </div>
