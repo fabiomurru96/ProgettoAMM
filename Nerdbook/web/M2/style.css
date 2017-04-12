@@ -166,12 +166,44 @@ nav li.active{
     display: inline-block;
 }
 
-.sideTitle{
+#personeSide div > div{
     margin-bottom: 5px;
+}
+
+#gruppiSide p{
+    display: inline-block;
+    vertical-align: middle;
+    margin-bottom: 5px;
+}
+
+
+/*Queste immagini non portano contenuti semantici ma solo di abbellimento*/ 
+.group::before{
+    content: url("img/group.png");
+    vertical-align: middle;
+    display: inline-block;
+}
+
+/*
+#mongolfieristi::before{
+    content: url("img/mongolfiera.png");
+    vertical-align: middle;
+    display: inline-block;
+}
+
+#ritardatari::before{
+    content: url("img/clock.png");
+    vertical-align: middle;
+    display: inline-block;
+}
+*/
+
+.sideTitle{
+    margin: 0;
+    margin-bottom: 10px;
     font-size: 20px;
     line-height: 30px;
     font-weight: bold;
-    margin: 0;
 }
 
 #posts{
