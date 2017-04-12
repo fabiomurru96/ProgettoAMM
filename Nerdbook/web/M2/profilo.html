@@ -39,7 +39,7 @@ and open the template in the editor.
                     <img src="img/propic.png" alt="Foto profilo di Mario Rossi" title="Mario Rossi"/>
                 </div>
                 <p>Mario Rossi</p>
-                <a href="#">logout</a>
+                <a href="#">Logout</a>
             </div>
         </header>
         <div id="divBody">
@@ -62,20 +62,34 @@ and open the template in the editor.
                 <div id="formdati">
                     <img class="proPic" src="img/propic.png" alt="Foto profilo di Mario Rossi" title="Mario Rossi"/>
                     <form action="#" method="post">
-                        <label for="nome" class="firstLabel">Nome</label>
+                        <div class="campoFormProfilo" id="formNome">
+                            <label for="nome" class="firstLabel">Nome</label>
                             <input id="nome" name="nome" type="text"/>
+                        </div>
+                        <div class="campoFormProfilo" id="formCognome">
                             <label for="cognome">Cognome</label>
                             <input id="cognome" name="cognome" type="text"/>
+                        </div>
+                        <div class="campoFormProfilo" id="formPropic">
                             <label for="propic">Immagine profilo</label>
                             <input id="propic" name="propic" type="url"/>
+                        </div>
+                        <div class="campoFormProfilo" id="formFrase">
                             <label for="status">Frase di presentazione</label>
                             <textarea id="status" name="status" rows="2"></textarea>
+                        </div>
+                        <div class="campoFormProfilo" id="formData">
                             <label for="datanascita">Data di nascita</label>
                             <input id="datanascita" name="datanascita" type="date"/>
+                        </div>
+                        <div class="campoFormProfilo" id="formPassword">
                             <label for="psswd">Password</label>
                             <input id="psswd" name="psswd" type="password"/>
+                        </div>
+                        <div class="campoFormProfilo" id="formConfermaP">
                             <label for="confirmpss">Conferma password</label>
                             <input id="confirmpss" name="confirmpss" type="password"/>
+                        </div>
                         <button type="submit">Aggiorna</button>
                     </form>
                 </div>

@@ -159,7 +159,7 @@ nav li.active{
     max-width: 1000px;
     height: 100%;
     background-color: #ffffff;
-    margin-left: 20%;
+    margin-left: 22%;
     padding: 5px;
     border-radius: 5px;
 }
@@ -169,6 +169,7 @@ nav li.active{
     top: 0;
     bottom: 0;
     width: 18.5%;
+    min-width: 149px;
     max-width: 250px;
     background-color: #ffffff;
     padding: 5px;
@@ -252,11 +253,13 @@ input:not([type="submit"]), textarea{
     margin: 15px;
     text-align: left;
     display: inline-block;
+    width: 60%;
 }
 
 #formdati .proPic{
     float: left;
     margin-right: 25px;
+    margin-bottom: 10px;
     width: 100px;
     height: 100px;
 }
@@ -266,6 +269,28 @@ form{
     display: inline-block;
 }
 
+.campoFormProfilo{
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.campoFormProfilo label{
+    display: inline-block;
+    vertical-align: bottom;
+    box-sizing: border-box;
+    width: 30%;
+    min-width: 92px;
+    overflow: hidden;
+    text-align: left;
+}
+
+.campoFormProfilo input, .campoFormProfilo textarea{
+    vertical-align: bottom;
+    width: 60%;
+    min-width: 187px;
+    margin-left: 8.5%;
+}
+
 button{
     border-radius: 5px;
     width: 100%;
@@ -273,6 +298,8 @@ button{
     background-color: #00BADB;
     box-shadow: inset 0 0 4px rgba(0,0,0,0.4);
     border: none;
+    color: #fff;
+    font-weight: bold;
 }
 
 button:hover{
@@ -281,17 +308,19 @@ button:hover{
 
 
 
-label::after, label:not(.firstLabel)::before{
+/*
+label:not(.firstLabel)::before{
     content: '\A';
     white-space: pre;
 }
-
+*/
 
 #login{
     text-align: center;
     background-color: #FFFFFF;
     border-radius: 5px;
     padding: 40px;
+    padding-top: 20px;
     margin: 0 20%;
 }
 
@@ -309,15 +338,40 @@ article{
     background-color: #fff;
     border-radius: 5px;
     padding: 30px;
+    text-align: center;
 }
 
-@media only screen and (min-width: 1024px){
-    #sideBar{
-        width: 18.5%;
+#sum{
+    display: inline-block;
+    padding: 5px 60px;
+    box-shadow: 0 2px 30px rgba(0,0,0,0.2);
+    border-radius: 15px;
+}
+
+#sum ol{
+    text-align: left;
+    padding: 0;
+    list-style-type: none;
+}
+
+#sum ol ol{
+    padding-left: 20px;
+}
+
+li ol{
+    list-style-type: lower-alpha;
+}
+
+@media only screen and (max-width: 780px){
+    
+    .content{
+        margin-left: 169px;
     }
+   
+    
 }
 
-@media only screen and (max-width: 480px){
+@media only screen and (max-width: 635px){
     #divBody{
         margin-top: 113px;
     }
@@ -326,15 +380,12 @@ article{
         height: 100px;
     }
     
-    #sideBar{
-        position: relative;
-        max-width: 100%;
-        width: inherit;
-        margin-bottom: 10px;
+    header#logHeader{
+        height: 50px;
     }
     
     nav{
-        margin-top: 15px;
+        margin-top: 14px;
         display: block;
         text-align: center;
     }
@@ -348,13 +399,33 @@ article{
     padding-right: 5px;
     }
     
+    nav#logNav{
+        margin-left: 15px;
+        vertical-align: top;
+        display: inline-block;
+    }
+    
     #loggedUser{
         top: 25%;
+    }
+}
+
+@media only screen and (max-width: 480px){
+    
+    #sideBar{
+        position: relative;
+        max-width: 100%;
+        width: inherit;
+        margin-bottom: 10px;
     }
     
     .content{
         margin: 0;
         position: relative;
+    }
+    
+    #login{
+        margin: 0 10%;
     }
     
     #login form{
