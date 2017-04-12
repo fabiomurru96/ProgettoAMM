@@ -178,13 +178,15 @@ nav li.active{
 
 
 /*Queste immagini non portano contenuti semantici ma solo di abbellimento*/ 
-.group::before{
+#gruppiSide h2::after{
     content: url("img/group.png");
-    vertical-align: middle;
+    position: relative;
+    top: 3px;
+    margin-left: 10px;
     display: inline-block;
 }
 
-/*
+
 #mongolfieristi::before{
     content: url("img/mongolfiera.png");
     vertical-align: middle;
@@ -196,7 +198,7 @@ nav li.active{
     vertical-align: middle;
     display: inline-block;
 }
-*/
+
 
 .sideTitle{
     margin: 0;
