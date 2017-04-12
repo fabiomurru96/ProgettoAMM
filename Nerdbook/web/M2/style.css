@@ -50,21 +50,10 @@ header{
     top: 0;
     z-index: 100;
     position: fixed;
-    height: 50px;
     width: 100%;
     background-color: #00BBDC;
     box-shadow: 0 1px 8px rgba(0,0,0,0.4);
     cursor: default;
-}
-
-/*Fix per posizionare la navbar a destra*/
-header::after{
-    content: '';
-    display:inline-block;
-    height: 0;
-    font-size: 0;
-    line-height: 0;
-    width: 100%;
 }
 
 header a:link, header a:visited{
@@ -85,15 +74,9 @@ header a:link, header a:visited{
 nav{
     font-size: 17px;
     line-height: 25px;
-    vertical-align: middle;
-    display: inline-block;
-    padding-right: 5px;
-    margin-left: 15px;
 }
 
 nav a:link, nav a:visited{
-    padding-left: 10px;
-    padding-right: 10px;
     display: block;
 }
 
@@ -142,7 +125,6 @@ nav li.active{
 
 #divBody{
     position: relative;
-    margin-top: 63px;
     width: inherit;
     height: 100%;
     margin-left: 1%;
@@ -150,16 +132,10 @@ nav li.active{
     margin-bottom: 10px;
 }
 
-:target{
-    padding-top: 63px;
-    margin-top: -63px;
-}
-
 .content{
     max-width: 1000px;
     height: 100%;
     background-color: #ffffff;
-    margin-left: 22%;
     padding: 5px;
     border-radius: 5px;
 }
@@ -168,7 +144,6 @@ nav li.active{
     position: absolute;
     top: 0;
     bottom: 0;
-    width: 18.5%;
     min-width: 149px;
     max-width: 250px;
     background-color: #ffffff;
@@ -176,11 +151,23 @@ nav li.active{
     border-radius: 5px;
 }
 
+#personeSide .proPic{
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+}
+
 #personeSide, #gruppiSide{
-    margin: 30px;
+    margin: 10px;
+}
+
+#personeSide p{
+    vertical-align: top;
+    display: inline-block;
 }
 
 .sideTitle{
+    margin-bottom: 5px;
     font-size: 20px;
     line-height: 30px;
     font-weight: bold;
@@ -238,11 +225,16 @@ input:not([type="submit"]), textarea{
     font-family: Lato, "Open Sans", sans-serif;
     background: transparent;
     padding: 0 8px;
+    padding-bottom: 2px; 
     border: 0;
     border-radius: 2px;
-    border-bottom: 1px solid;
+    border-bottom: 1px solid rgba(0,0,0,0.3);
     margin-bottom: 10px;
     outline: none;
+}
+
+input:not([type="submit"]):focus, textarea:focus{
+    border-color: #000;
 }
 
 #profileContent{
@@ -253,13 +245,9 @@ input:not([type="submit"]), textarea{
     margin: 15px;
     text-align: left;
     display: inline-block;
-    width: 60%;
 }
 
 #formdati .proPic{
-    float: left;
-    margin-right: 25px;
-    margin-bottom: 10px;
     width: 100px;
     height: 100px;
 }
@@ -286,9 +274,6 @@ form{
 
 .campoFormProfilo input, .campoFormProfilo textarea{
     vertical-align: bottom;
-    width: 60%;
-    min-width: 187px;
-    margin-left: 8.5%;
 }
 
 button{
@@ -319,14 +304,10 @@ label:not(.firstLabel)::before{
     text-align: center;
     background-color: #FFFFFF;
     border-radius: 5px;
-    padding: 40px;
-    padding-top: 20px;
-    margin: 0 20%;
 }
 
 #login form{
     margin: 0 auto;
-    width: 40%;
 }
 
 #login h1{
@@ -358,8 +339,134 @@ article{
     padding-left: 20px;
 }
 
-li ol{
-    list-style-type: lower-alpha;
+@media only screen and (min-width: 1024px){
+
+    header{
+        height: 50px;
+    }
+
+    nav{
+        vertical-align: middle;
+        display: inline-block;
+        padding-right: 5px;
+        margin-left: 15px;
+    }
+
+    nav a:link, nav a:visited{
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    #divBody{
+        margin-top: 63px;
+    }
+
+    :target{
+        padding-top: 63px;
+        margin-top: -63px;
+    }
+
+    .content{
+        margin-left: 22%;
+    }
+
+    #sideBar{
+        width: 18.5%;
+    }
+
+    #profileContent{
+        text-align: center;
+    }
+
+    #formdati{
+        width: 60%;
+    }
+
+    #formdati .proPic{
+        float: left;
+        margin-right: 25px;
+    }
+
+    .campoFormProfilo input, .campoFormProfilo textarea{
+        width: 60%;
+        min-width: 187px;
+        margin-left: 8.5%;
+    }
+
+    #login{
+        padding: 40px;
+        padding-top: 20px;
+        margin: 0 20%;
+    }
+
+    #login form{
+        width: 40%;
+    }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 1024px){
+    header{
+        height: 50px;
+    }
+
+    nav{
+        vertical-align: middle;
+        display: inline-block;
+        padding-right: 5px;
+        margin-left: 15px;
+    }
+
+    nav a:link, nav a:visited{
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    #divBody{
+        margin-top: 63px;
+    }
+
+    :target{
+        padding-top: 63px;
+        margin-top: -63px;
+    }
+
+    .content{
+        margin-left: 22%;
+    }
+
+    #sideBar{
+        width: 18.5%;
+    }
+
+    #profileContent{
+        text-align: center;
+    }
+
+    #formdati{
+        width: 70%;
+    }
+
+    #formdati .proPic{
+        float: left;
+        margin-right: 25px;
+        margin-bottom: 10px;
+    }
+
+    .campoFormProfilo input, .campoFormProfilo textarea{
+        width: 60%;
+        min-width: 187px;
+        margin-left: 8.5%;
+    }
+
+    #login{
+        padding: 40px;
+        padding-top: 20px;
+        margin: 0 20%;
+    }
+
+    #login form{
+        width: 40%;
+    }
 }
 
 @media only screen and (max-width: 780px){
@@ -368,6 +475,9 @@ li ol{
         margin-left: 169px;
     }
    
+    .campoFormProfilo input, .campoFormProfilo textarea{
+        margin-left: 2%;
+    }
     
 }
 
@@ -411,22 +521,55 @@ li ol{
 }
 
 @media only screen and (max-width: 480px){
-    
+
+    nav{
+        padding-right: 5px;
+        margin-left: 15px;
+    }
+
+    :target{
+        padding-top: 63px;
+        margin-top: -63px;
+    }
+
+    .content{
+        margin: 0;
+        position: relative;
+    }
+
     #sideBar{
         position: relative;
         max-width: 100%;
         width: inherit;
         margin-bottom: 10px;
     }
-    
-    .content{
-        margin: 0;
-        position: relative;
+
+    #profileContent{
+        text-align: center;
     }
-    
+
+    #formdati{
+        width: 60%;
+    }
+
+    #formdati .proPic{
+        float: left;
+        margin-right: 25px;
+        margin-bottom: 10px;
+    }
+
+    .campoFormProfilo input, .campoFormProfilo textarea{
+        width: 60%;
+        min-width: 187px;
+        margin-left: 0;
+    }
+
     #login{
+        padding: 40px;
+        padding-top: 20px;
         margin: 0 10%;
     }
+    
     
     #login form{
         width: 50%;
