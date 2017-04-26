@@ -148,6 +148,7 @@ nav li.active{
     max-width: 250px;
     background-color: #ffffff;
     padding: 5px;
+    overflow-y: auto;
     border-radius: 5px;
 }
 
@@ -406,6 +407,7 @@ article{
 
     #sideBar{
         width: 18.5%;
+        min-height: 300px;
     }
 
     #profileContent{
@@ -470,6 +472,7 @@ article{
 
     #sideBar{
         width: 18.5%;
+        min-height: 300px;
     }
 
     #profileContent{
