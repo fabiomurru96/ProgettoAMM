@@ -14,11 +14,15 @@ import java.util.ArrayList;
 public class Gruppo {
     
     private int id;
+    private String nome;
+    private String urlFoto;
     private ArrayList<Utente> utenti;
 
     public Gruppo()
     {
         this.id = 0;
+        this.nome = "";
+        this.urlFoto = "";
         this.utenti = null;
     }
     
@@ -48,6 +52,34 @@ public class Gruppo {
      */
     public void setUtenti(ArrayList<Utente> utenti) {
         this.utenti = utenti;
+    }
+
+    /**
+     * @return the nome
+     */
+    public String getNome() {
+        return nome;
+    }
+
+    /**
+     * @param nome the nome to set
+     */
+    public void setNome(String nome) {
+        this.nome = nome.substring(0, 1).toUpperCase() + nome.substring(1).toLowerCase();
+    }
+
+    /**
+     * @return the urlFoto
+     */
+    public String getUrlFoto() {
+        return urlFoto;
+    }
+
+    /**
+     * @param urlFoto the urlFoto to set
+     */
+    public void setUrlFoto(String urlFoto) {
+        this.urlFoto = urlFoto;
     }
 
 }

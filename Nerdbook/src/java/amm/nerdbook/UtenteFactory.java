@@ -54,7 +54,7 @@ public class UtenteFactory {
         listaUtenti.add(user2);
     }
     
-    public Utente getUtendeById(int id)
+    public Utente getById(int id)
     {
         for(Utente u : listaUtenti)
             if(u.getId() == id)

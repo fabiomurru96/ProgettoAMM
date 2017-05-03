@@ -57,7 +57,7 @@ public class Utente {
      * @param nome the nome to set
      */
     public void setNome(String nome) {
-        this.nome = nome;
+        this.nome = nome.substring(0, 1).toUpperCase() + nome.substring(1).toLowerCase();
     }
 
     /**
@@ -144,4 +144,12 @@ public class Utente {
         this.dataDiNascita = dataDiNascita;
     }
     
+    @Override
+    public boolean equals(Object obj)
+    {
+        if(!(obj instanceof Utente))
+            return false;
+        Utente temp = (Utente)obj;
+        return this.id == temp.id;
+    }
 }

@@ -18,15 +18,20 @@ public class Post {
     
     private int id;
     private Utente utente;
+    private Gruppo gruppo;
     private String testo;
     private Type tipoAllegato;
+    private String allegato;
 
+    
     public Post()
     {
         this.id = 0;
         this.utente = null;
+        this.gruppo = null;
         this.testo = "";
         this.tipoAllegato = Type.NONE;
+        this.allegato = "";
     }
     
     /**
@@ -83,6 +88,34 @@ public class Post {
      */
     public void setTipoAllegato(Type tipoAllegato) {
         this.tipoAllegato = tipoAllegato;
+    }
+
+    /**
+     * @return the allegato
+     */
+    public String getAllegato() {
+        return allegato;
+    }
+
+    /**
+     * @param allegato the allegato to set
+     */
+    public void setAllegato(String allegato) {
+        this.allegato = allegato;
+    }
+
+    /**
+     * @return the gruppo
+     */
+    public Gruppo getGruppo() {
+        return gruppo;
+    }
+
+    /**
+     * @param gruppo the gruppo to set
+     */
+    public void setGruppo(Gruppo gruppo) {
+        this.gruppo = gruppo;
     }
     
 }
