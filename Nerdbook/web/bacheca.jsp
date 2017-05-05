@@ -66,7 +66,8 @@ and open the template in the editor.
                                     <c:if test="${err == '1'}"></br><p>Inserisci il Testo.</p></br></c:if>
                                     <c:if test="${err == '2'}"></br><p>Inserisci Allegato.</p></br></c:if>
                                     <button type="submit" name="invia" value="2">Invia</button>
-                                    <c:if test="${scritto != null}"></br></br><p>Hai scritto sulla bacheca di ${userU.nome} ${userU.cognome}!</p></br></c:if>
+                                    <c:if test="${scritto != null && user != null}"></br></br><p>Hai scritto sulla bacheca di ${userU.nome} ${userU.cognome}!</p></br></c:if>
+                                    <c:if test="${scritto != null && group != null}"></br></br><p>Hai scritto sulla bacheca del gruppo!</p></br></c:if>
                                 </form>
 
                             </div>
