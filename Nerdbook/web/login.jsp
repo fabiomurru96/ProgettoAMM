@@ -17,17 +17,20 @@ and open the template in the editor.
     </head>
     <body>
         
-        <c:set property="pagina" value="login"/>
+        <c:set var="pagina" value="login" scope="request"/>
         <jsp:include page="header.jsp"/>
         
         <div id="divBody">
             <div id="login">
                 <h1>Nerdbook</h1>
-                <form method="post" action="#">
+                <form method="post" action="login.html">
                     <label for="user" class="firstLabel">Username</label>
                     <input name="user" id="user" type="text">
                     <label for="password">Password</label>
                     <input name="password" id="password" type="password">
+                    <c:if test="${invalidData == true}">
+                        <p>Inseriti dati scorretti.</p>
+                    </c:if>
                     <button type="submit">Invia</button>
                 </form>
             </div>

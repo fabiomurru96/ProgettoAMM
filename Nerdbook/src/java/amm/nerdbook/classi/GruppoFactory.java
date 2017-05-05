@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package amm.nerdbook;
+package amm.nerdbook.classi;
 
 import java.util.ArrayList;
 
@@ -15,7 +15,7 @@ public class GruppoFactory {
  
     private static GruppoFactory singleton;
     
-    public GruppoFactory getInstance()
+    public static GruppoFactory getInstance()
     {
         if(singleton == null)
             singleton = new GruppoFactory();
@@ -33,13 +33,15 @@ public class GruppoFactory {
         users1.add(utenti.getById(0));
         users1.add(utenti.getById(1));
         gruppo1.setId(0);
+        gruppo1.setUrlFoto("img/mongolfiera.png");
         gruppo1.setNome("Mongolfieristi");
         gruppo1.setUtenti(users1);
         
         Gruppo gruppo2 = new Gruppo();
         ArrayList<Utente> users2 = new ArrayList<>();
         users2.add(utenti.getById(0));
-        gruppo2.setId(0);
+        gruppo2.setId(1);
+        gruppo2.setUrlFoto("img/clock.png");
         gruppo2.setNome("Ritardatari");
         gruppo2.setUtenti(users2);
         
@@ -53,5 +55,10 @@ public class GruppoFactory {
             if(g.getId() == id)
                 return g;
         return null;
+    }
+    
+    public ArrayList<Gruppo> getGroupsList()
+    {
+        return listaGruppi;
     }
 }

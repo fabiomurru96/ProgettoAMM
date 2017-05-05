@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package amm.nerdbook;
+package amm.nerdbook.classi;
 
 import java.util.ArrayList;
 
@@ -48,7 +48,7 @@ public class UtenteFactory {
         user2.setPassword("Punto111");
         user2.setUrlFoto("img/pincopallino.png");
         user2.setFrase("Non so chi sono");
-        user2.setDataDiNascita("1/1/1992");
+        
         
         listaUtenti.add(user1);
         listaUtenti.add(user2);
@@ -63,4 +63,16 @@ public class UtenteFactory {
         return null;
     }
     
+    public int getIdByUserAndPassword(String usn, String psw)
+    {
+        for(Utente u : listaUtenti)
+            if(u.getUsername().equals(usn) && u.getPassword().equals(psw))
+                return u.getId();
+        return -1;
+    }
+    
+    public ArrayList<Utente> getUsersList()
+    {
+        return listaUtenti;
+    }
 }

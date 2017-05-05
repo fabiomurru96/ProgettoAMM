@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package amm.nerdbook;
+package amm.nerdbook.classi;
 
 /**
  *
@@ -11,12 +11,13 @@ package amm.nerdbook;
  */
 public class Post {
     
-    public enum Type
+    public static enum Type
     {
         NONE, LINK, IMAGE
     }
     
     private int id;
+    private Utente autore;
     private Utente utente;
     private Gruppo gruppo;
     private String testo;
@@ -27,6 +28,7 @@ public class Post {
     public Post()
     {
         this.id = 0;
+        this.autore = null;
         this.utente = null;
         this.gruppo = null;
         this.testo = "";
@@ -59,7 +61,8 @@ public class Post {
      * @param utente the utente to set
      */
     public void setUtente(Utente utente) {
-        this.utente = utente;
+        if(this.gruppo == null)
+            this.utente = utente;
     }
 
     /**
@@ -115,7 +118,22 @@ public class Post {
      * @param gruppo the gruppo to set
      */
     public void setGruppo(Gruppo gruppo) {
-        this.gruppo = gruppo;
+        if(this.utente == null)
+            this.gruppo = gruppo;
+    }
+
+    /**
+     * @return the autore
+     */
+    public Utente getAutore() {
+        return autore;
+    }
+
+    /**
+     * @param autore the autore to set
+     */
+    public void setAutore(Utente autore) {
+        this.autore = autore;
     }
     
 }

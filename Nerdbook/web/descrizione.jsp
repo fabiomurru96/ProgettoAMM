@@ -17,7 +17,7 @@ and open the template in the editor.
     </head>
     <body>
         
-        <c:set property="pagina" value="descrizione"/>
+        <c:set var="pagina" value="descrizione" scope="request"/>
         <jsp:include page="header.jsp"/>
         
         <div id="divBody">
@@ -39,8 +39,8 @@ and open the template in the editor.
                 <section id="generiche">
                     <h2>Domande generiche</h2>
                     <section id="aChi">
-                        <h3>A chi Ã¨ rivolto?</h3>
-                        <p>Nerdbook Ã¨ rivolto a chiunque abbia la nostra passione, e voglia conoscere nuovi amici.</p>
+                        <h3>A chi è rivolto?</h3>
+                        <p>Nerdbook è rivolto a chiunque abbia la nostra passione, e voglia conoscere nuovi amici.</p>
                     </section>
                     <section id="comeIscriversi">
                         <h3>Come iscriversi?</h3>
@@ -48,7 +48,7 @@ and open the template in the editor.
                     </section>
                     <section id="costo">
                         <h3>Quanto costa?</h3>
-                        <p>Nerdbook Ã¨ completamente gratuito a chiunque si iscriva.</p>
+                        <p>Nerdbook è completamente gratuito a chiunque si iscriva.</p>
                     </section>
                 </section>
             </article>
