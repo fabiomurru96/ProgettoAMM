@@ -90,6 +90,7 @@ and open the template in the editor.
                                     </c:if>  
                                 </div>
                                     <form action="bacheca.html<c:if test="${user != null}">?user=${user}</c:if><c:if test="${group != null}">?group=${group}</c:if>" method="post">
+                                        <input type="hidden" name="postC" value="${postCode}"/>
                                         <button type="submit" name="confirm" value="1">Conferma</button>
                                     </form>
                             </div>

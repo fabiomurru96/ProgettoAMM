@@ -12,26 +12,29 @@ import java.util.List;
  *
  * @author fabio
  */
-public class PostFactory {
-    
+public class PostFactory
+{
+
     private static PostFactory singleton;
-   
+
     public static PostFactory getInstance()
     {
-        if(singleton == null)
+        if (singleton == null)
+        {
             singleton = new PostFactory();
+        }
         return singleton;
     }
-    
+
     private ArrayList<Post> listaPost = new ArrayList<>();
-   
+
     private int lastId = -1;
-    
+
     private PostFactory()
     {
         UtenteFactory utenti = UtenteFactory.getInstance();
         GruppoFactory gruppi = GruppoFactory.getInstance();
-        
+
         Post post1 = new Post();
         post1.setId(0);
         post1.setTesto("Ciao a tutti!");
@@ -39,7 +42,7 @@ public class PostFactory {
         post1.setUtente(utenti.getById(0));
         post1.setAutore(utenti.getById(0));
         lastId++;
-        
+
         Post post2 = new Post();
         post2.setId(1);
         post2.setTesto("Wow, che bella foto!");
@@ -48,7 +51,7 @@ public class PostFactory {
         post2.setUtente(utenti.getById(1));
         post2.setAutore(utenti.getById(1));
         lastId++;
-        
+
         Post post3 = new Post();
         post3.setId(2);
         post3.setTesto("Apri Mario!");
@@ -57,62 +60,87 @@ public class PostFactory {
         post3.setUtente(utenti.getById(0));
         post3.setAutore(utenti.getById(1));
         lastId++;
-        
+
         Post post4 = new Post();
         post4.setId(3);
         post4.setTesto("Ciao mongolfieristi.");
         post4.setGruppo(gruppi.getById(0));
         post4.setAutore(utenti.getById(0));
         lastId++;
+
+        Post post5 = new Post();
+        post5.setId(4);
+        post5.setTesto("Yeeee");
+        post5.setGruppo(gruppi.getById(0));
+        post5.setAutore(utenti.getById(1));
+        lastId++;
         
         listaPost.add(post1);
         listaPost.add(post2);
         listaPost.add(post3);
         listaPost.add(post4);
+        listaPost.add(post5);
     }
-    
+
     public Post getById(int id)
     {
-        for(Post p : listaPost)
-            if(p.getId() == id)
+        for (Post p : listaPost)
+        {
+            if (p.getId() == id)
+            {
                 return p;
+            }
+        }
         return null;
     }
-    
+
     public void addPost(Post p)
     {
         listaPost.add(p);
         lastId++;
     }
-    
+
     public List<Post> getList(Utente u)
     {
         ArrayList<Post> temp = new ArrayList<>();
-        
-        for(Post p : listaPost)
-            if(p.getUtente() != null && p.getUtente().equals(u))
+
+        for (Post p : listaPost)
+        {
+            if (p.getUtente() != null && p.getUtente().equals(u))
+            {
                 temp.add(p);
-        if(temp.isEmpty())
+            }
+        }
+        if (temp.isEmpty())
+        {
             return null;
+        }
         return temp;
     }
-    
+
     public List<Post> getList(Gruppo g)
     {
         ArrayList<Post> temp = new ArrayList<>();
-        
-        for(Post p : listaPost)
-            if(p.getGruppo() != null && p.getGruppo().equals(g))
+
+        for (Post p : listaPost)
+        {
+            if (p.getGruppo() != null && p.getGruppo().equals(g))
+            {
                 temp.add(p);
-        if(temp.isEmpty())
+            }
+        }
+        if (temp.isEmpty())
+        {
             return null;
+        }
         return temp;
     }
 
     /**
      * @return the lastId
      */
-    public int getLastId() {
+    public int getLastId()
+    {
         return lastId;
     }
 

@@ -11,8 +11,13 @@ import amm.nerdbook.classi.Post;
 import amm.nerdbook.classi.PostFactory;
 import amm.nerdbook.classi.Utente;
 import amm.nerdbook.classi.UtenteFactory;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
+import java.util.Base64;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -45,11 +50,37 @@ public class Bacheca extends HttpServlet {
         Utente utente = null;
         Gruppo gruppo = null;
         Post p;
-        if(getServletContext().getAttribute("postNew") != null)
-            p = (Post) getServletContext().getAttribute("postNew");
+        if(request.getParameter("postC") != null)
+        {
+            try
+            {
+                final String base64String = request.getParameter("postC");
+                final byte[] objToBytes = Base64.getDecoder().decode(base64String);
+                ByteArrayInputStream bais = new ByteArrayInputStream(objToBytes);
+                ObjectInputStream ois = new ObjectInputStream(bais);
+                p = (Post) ois.readObject();
+            }catch(ClassNotFoundException e)
+            {
+                p = null;
+            }
+        }
         else 
             p = null;
         
+        
+        if(request.getParameter("confirm") != null && p != null)
+        {
+            PostFactory abc = PostFactory.getInstance();
+            abc.addPost(p);
+            /*String redirect = request.getContextPath() + "/bacheca.html";
+            if(request.getParameter("user") != null)
+                redirect=redirect.concat("?user=" + request.getParameter("user"));
+            else if(request.getParameter("group") != null)
+                redirect=redirect.concat("?group=" + request.getParameter("group"));
+            response.sendRedirect(redirect);*/
+            request.setAttribute("scritto", "1");
+        }
+         
         
         if(session.getAttribute("loggedIn") == null || session.getAttribute("loggedUser") == null)
         {
@@ -140,20 +171,14 @@ public class Bacheca extends HttpServlet {
                 return;
             }
             
-            getServletContext().setAttribute("postNew", p);
+            final ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            final ObjectOutputStream oos = new ObjectOutputStream(baos);
+            oos.writeObject(p);
+            oos.flush();
+            final String result = new String(Base64.getEncoder().encode(baos.toByteArray()));
+            request.setAttribute("postCode", result);
+            request.setAttribute("postNew", p);
             request.setAttribute("submit", "1");
-        }
-        if(request.getParameter("confirm") != null && p != null)
-        {
-            PostFactory.getInstance().addPost(p);
-            getServletContext().removeAttribute("postNew");
-            /*String redirect = request.getContextPath() + "/bacheca.html";
-            if(request.getParameter("user") != null)
-                redirect=redirect.concat("?user=" + request.getParameter("user"));
-            else if(request.getParameter("group") != null)
-                redirect=redirect.concat("?group=" + request.getParameter("group"));
-            response.sendRedirect(redirect);*/
-            request.setAttribute("scritto", "1");
         }
         
         request.getRequestDispatcher("bacheca.jsp").forward(request, response);

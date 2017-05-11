@@ -5,14 +5,16 @@
  */
 package amm.nerdbook.classi;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author FabioM
  */
-public class Gruppo {
-    
+public class Gruppo implements Serializable
+{
+
     private int id;
     private String nome;
     private String urlFoto;
@@ -25,61 +27,80 @@ public class Gruppo {
         this.urlFoto = "";
         this.utenti = null;
     }
-    
+
     /**
      * @return the id
      */
-    public int getId() {
+    public int getId()
+    {
         return id;
     }
 
     /**
      * @param id the id to set
      */
-    public void setId(int id) {
+    public void setId(int id)
+    {
         this.id = id;
     }
 
     /**
      * @return the utenti
      */
-    public ArrayList<Utente> getUtenti() {
+    public ArrayList<Utente> getUtenti()
+    {
         return utenti;
     }
 
     /**
      * @param utenti the utenti to set
      */
-    public void setUtenti(ArrayList<Utente> utenti) {
+    public void setUtenti(ArrayList<Utente> utenti)
+    {
         this.utenti = utenti;
     }
 
     /**
      * @return the nome
      */
-    public String getNome() {
+    public String getNome()
+    {
         return nome;
     }
 
     /**
      * @param nome the nome to set
      */
-    public void setNome(String nome) {
+    public void setNome(String nome)
+    {
         this.nome = nome.substring(0, 1).toUpperCase() + nome.substring(1).toLowerCase();
     }
 
     /**
      * @return the urlFoto
      */
-    public String getUrlFoto() {
+    public String getUrlFoto()
+    {
         return urlFoto;
     }
 
     /**
      * @param urlFoto the urlFoto to set
      */
-    public void setUrlFoto(String urlFoto) {
+    public void setUrlFoto(String urlFoto)
+    {
         this.urlFoto = urlFoto;
     }
 
+    @Override
+    public boolean equals(Object obj)
+    {
+        if (!(obj instanceof Gruppo))
+        {
+            return false;
+        }
+        Gruppo temp = (Gruppo) obj;
+        return this.id == temp.id;
+    }
+    
 }

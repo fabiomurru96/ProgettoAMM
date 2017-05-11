@@ -47,7 +47,8 @@ public class UtenteFactory {
         user2.setUsername("p.pallino1992");
         user2.setPassword("Punto111");
         user2.setUrlFoto("img/pincopallino.png");
-        user2.setFrase("Non so chi sono");
+       
+        user2.setDataDiNascita("1/1/1992");
         
         
         listaUtenti.add(user1);

@@ -76,9 +76,9 @@ public class Login extends HttpServlet {
                     getServletContext().setAttribute("utenti", UtenteFactory.getInstance().getUsersList());
                     getServletContext().setAttribute("gruppi", GruppoFactory.getInstance().getGroupsList());
                     
-                    if( loggedUser.getNome().equals("")         ||
-                        loggedUser.getCognome().equals("")      ||
-                        loggedUser.getDataDiNascita().equals("")||
+                    if( loggedUser.getNome().equals("")   ||
+                        loggedUser.getCognome().equals("")||
+                        loggedUser.getUrlFoto().equals("")||
                         loggedUser.getFrase().equals(""))
                     {
                         response.sendRedirect(request.getContextPath() + "/profilo.html");
