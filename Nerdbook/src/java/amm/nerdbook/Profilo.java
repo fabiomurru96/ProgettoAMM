@@ -5,6 +5,7 @@
  */
 package amm.nerdbook;
 
+import amm.nerdbook.classi.GruppoFactory;
 import amm.nerdbook.classi.Utente;
 import amm.nerdbook.classi.UtenteFactory;
 import java.io.IOException;
@@ -56,48 +57,57 @@ public class Profilo extends HttpServlet {
         String psswd = (String) request.getParameter("psswd");
         String confirmpss = (String) request.getParameter("confirmpss");
         
-        if(nome != null && !nome.equals(""))
+        
+        if(request.getParameter("confirm")!=null)
         {
-            UtenteFactory.getInstance().getById(u.getId()).setNome(nome);
-            request.setAttribute("nome", nome);
-            request.setAttribute("done","1");
-        }
-        if(cognome != null && !cognome.equals(""))
-        {
-            UtenteFactory.getInstance().getById(u.getId()).setCognome(cognome);
-            request.setAttribute("cognome", cognome);
-            request.setAttribute("done","1");
-        }
-        if(propic != null && !propic.equals(""))
-        {
-            UtenteFactory.getInstance().getById(u.getId()).setUrlFoto(propic);
-            request.setAttribute("propic", propic);
-            request.setAttribute("done","1");
-        }
-        if(status != null && !status.equals(""))
-        {
-            UtenteFactory.getInstance().getById(u.getId()).setFrase(status);
-            request.setAttribute("status", status);
-            request.setAttribute("done","1");
-        }
-        if(datanascita != null && !datanascita.equals(""))
-        {
-            UtenteFactory.getInstance().getById(u.getId()).setDataDiNascita(datanascita);
-            request.setAttribute("datanascita", datanascita);
-            request.setAttribute("done","1");
-        }
-        if(psswd != null && !psswd.equals(""))
-        {
-            if(confirmpss == null ||  (confirmpss != null && confirmpss.equals("")))
-                request.setAttribute("errpass", "1");
-            else if(!confirmpss.equals(psswd))
-                request.setAttribute("errpass","2");
-            else
+            if(nome != null && !nome.equals(""))
             {
-                UtenteFactory.getInstance().getById(u.getId()).setPassword(psswd);
-                request.setAttribute("psswd", psswd);
+                u.setNome(nome);
+                request.setAttribute("nome", nome);
                 request.setAttribute("done","1");
             }
+            if(cognome != null && !cognome.equals(""))
+            {
+                u.setCognome(cognome);
+                request.setAttribute("cognome", cognome);
+                request.setAttribute("done","1");
+            }
+            if(propic != null && !propic.equals(""))
+            {
+                u.setUrlFoto(propic);
+                request.setAttribute("propic", propic);
+                request.setAttribute("done","1");
+            }
+            if(status != null && !status.equals(""))
+            {
+                u.setFrase(status);
+                request.setAttribute("status", status);
+                request.setAttribute("done","1");
+            }
+            if(datanascita != null && !datanascita.equals(""))
+            {
+                u.setDataDiNascita(datanascita);
+                request.setAttribute("datanascita", datanascita);
+                request.setAttribute("done","1");
+            }
+            if(psswd != null && !psswd.equals(""))
+            {
+                if(confirmpss == null ||  (confirmpss != null && confirmpss.equals("")))
+                    request.setAttribute("errpass", "1");
+                else if(!confirmpss.equals(psswd))
+                    request.setAttribute("errpass","2");
+                else
+                {
+                    u.setPassword(psswd);
+                    request.setAttribute("psswd", psswd);
+                    request.setAttribute("done","1");
+                }
+            }
+            
+            UtenteFactory.getInstance().updateUser(u);
+            session.setAttribute("utenti", UtenteFactory.getInstance().getUsersList());
+            session.setAttribute("gruppi", GruppoFactory.getInstance().getGroupsList());
+                    
         }
             
         request.getRequestDispatcher("profilo.jsp").forward(request, response);

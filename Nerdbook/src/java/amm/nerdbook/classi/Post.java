@@ -16,7 +16,19 @@ public class Post implements Serializable
 
     public static enum Type
     {
-        NONE, LINK, IMAGE
+        NONE(1), LINK(2), IMAGE(3);
+        
+        private final int value;
+        
+        private Type(int value)
+        {
+            this.value=value;
+        }
+        
+        public int getValue()
+        {
+            return value;
+        }
     }
 
     private int id;

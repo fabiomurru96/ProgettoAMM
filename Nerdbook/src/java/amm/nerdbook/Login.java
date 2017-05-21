@@ -6,10 +6,13 @@
 package amm.nerdbook;
 
 import amm.nerdbook.classi.GruppoFactory;
+import amm.nerdbook.classi.PostFactory;
 import amm.nerdbook.classi.Utente;
 import amm.nerdbook.classi.UtenteFactory;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,9 +24,13 @@ import javax.servlet.http.HttpSession;
  *
  * @author fabio
  */
-@WebServlet(name = "Login", urlPatterns = {"/login.html"})
+@WebServlet(name = "Login", urlPatterns = {"/login.html"}, loadOnStartup = 0)
 public class Login extends HttpServlet {
 
+    private static final String JDBC_DRIVER = "org.apache.derby.jdbc.EmbeddedDriver";
+    private static final String DB_CLEAN_PATH = "../../web/WEB-INF/db/ammdb";
+    private static final String DB_BUILD_PATH = "WEB-INF/db/ammdb";
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -57,13 +64,13 @@ public class Login extends HttpServlet {
         }
         else 
         {
-            String username = request.getParameter("user");
-            String password = request.getParameter("password");
-        
       
-            if (username != null &&
-                password != null) 
+            if (request.getParameter("user") != null &&
+                request.getParameter("password") != null) 
             {
+                String username = new String(request.getParameter("user").getBytes("ISO-8859-1"));
+                String password = new String(request.getParameter("password").getBytes("ISO-8859-1"));
+                
                 int loggedUserID = UtenteFactory.getInstance().getIdByUserAndPassword(username, password);
                 Utente loggedUser = UtenteFactory.getInstance().getById(loggedUserID);
                
@@ -73,13 +80,13 @@ public class Login extends HttpServlet {
                     session.setAttribute("loggedIn", true);
                     session.setAttribute("loggedUser", loggedUser);
                     
-                    getServletContext().setAttribute("utenti", UtenteFactory.getInstance().getUsersList());
-                    getServletContext().setAttribute("gruppi", GruppoFactory.getInstance().getGroupsList());
+                    session.setAttribute("utenti", UtenteFactory.getInstance().getUsersList());
+                    session.setAttribute("gruppi", GruppoFactory.getInstance().getGroupsList());
                     
-                    if( loggedUser.getNome().equals("")   ||
-                        loggedUser.getCognome().equals("")||
-                        loggedUser.getUrlFoto().equals("")||
-                        loggedUser.getFrase().equals(""))
+                    if( (loggedUser.getNome()!=null&&loggedUser.getNome().equals(""))   ||
+                        (loggedUser.getCognome()!=null&&loggedUser.getCognome().equals(""))||
+                        (loggedUser.getUrlFoto()!=null&&loggedUser.getUrlFoto().equals(""))||
+                        (loggedUser.getFrase()!=null&&loggedUser.getFrase().equals("")))
                     {
                         response.sendRedirect(request.getContextPath() + "/profilo.html");
                     }
@@ -102,6 +109,21 @@ public class Login extends HttpServlet {
     
     }
 
+    @Override
+   public void init(){
+       String dbConnection = "jdbc:derby:" + this.getServletContext().getRealPath("/") + DB_BUILD_PATH;
+       try {
+           Class.forName(JDBC_DRIVER);
+       } catch (ClassNotFoundException ex) {
+           Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+       }
+       PostFactory.getInstance().setConnectionString(dbConnection);
+       UtenteFactory.getInstance().setConnectionString(dbConnection);
+       GruppoFactory.getInstance().setConnectionString(dbConnection);
+       
+   }
+    
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

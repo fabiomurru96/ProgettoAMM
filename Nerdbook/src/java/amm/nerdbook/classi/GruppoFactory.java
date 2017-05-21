@@ -5,7 +5,14 @@
  */
 package amm.nerdbook.classi;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -25,47 +32,104 @@ public class GruppoFactory
         return singleton;
     }
 
-    private ArrayList<Gruppo> listaGruppi = new ArrayList<>();
-
+ //   private ArrayList<Gruppo> listaGruppi = new ArrayList<>();
+    private String connectionString;
+    
+    
     private GruppoFactory()
     {
-        UtenteFactory utenti = UtenteFactory.getInstance();
-
-        Gruppo gruppo1 = new Gruppo();
-        ArrayList<Utente> users1 = new ArrayList<>();
-        users1.add(utenti.getById(0));
-        users1.add(utenti.getById(1));
-        gruppo1.setId(0);
-        gruppo1.setUrlFoto("img/mongolfiera.png");
-        gruppo1.setNome("Mongolfieristi");
-        gruppo1.setUtenti(users1);
-
-        Gruppo gruppo2 = new Gruppo();
-        ArrayList<Utente> users2 = new ArrayList<>();
-        users2.add(utenti.getById(0));
-        gruppo2.setId(1);
-        gruppo2.setUrlFoto("img/clock.png");
-        gruppo2.setNome("Ritardatari");
-        gruppo2.setUtenti(users2);
-
-        listaGruppi.add(gruppo1);
-        listaGruppi.add(gruppo2);
     }
 
     public Gruppo getById(int id)
     {
-        for (Gruppo g : listaGruppi)
+        try
+        {
+            Connection conn = DriverManager.getConnection(connectionString, "amm", "admin");            
+            String sql = "SELECT * FROM gruppi WHERE id = ?";
+            
+            PreparedStatement stat = conn.prepareStatement(sql);
+            stat.setInt(1,id);
+            
+            ResultSet set = stat.executeQuery();     
+            
+            if(set.next())
+            {
+                Gruppo gruppo = new Gruppo();
+            
+                gruppo.setId(id);
+                gruppo.setNome(set.getString("nome"));
+                gruppo.setUrlFoto(set.getString("urlFoto"));
+                stat.close();
+                conn.close();
+                return gruppo;
+            }
+            stat.close();
+            conn.close();
+            
+        }catch(SQLException e)
+        {
+            Logger.getLogger(UtenteFactory.class.getName()).
+            log(Level.SEVERE, null, e);
+        }
+        
+        return null;
+        
+        /*for (Gruppo g : listaGruppi)
         {
             if (g.getId() == id)
             {
                 return g;
             }
         }
-        return null;
+        return null;*/
     }
 
     public ArrayList<Gruppo> getGroupsList()
     {
+        ArrayList<Gruppo> listaGruppi = new ArrayList<>();
+        try
+        {   
+            Connection conn = DriverManager.getConnection(connectionString, "amm", "admin");            
+
+            String sql = "SELECT * FROM gruppi";
+            
+            PreparedStatement stat = conn.prepareStatement(sql);
+
+            ResultSet set = stat.executeQuery();     
+            
+            while(set.next())
+            {
+                Gruppo gruppo = new Gruppo();
+            
+                gruppo.setId(set.getInt("id"));
+                gruppo.setNome(set.getString("nome"));
+                gruppo.setUrlFoto(set.getString("urlFoto"));
+                
+                listaGruppi.add(gruppo);
+            }
+            stat.close();
+            conn.close();      
+        }catch(SQLException e)
+        {
+            Logger.getLogger(UtenteFactory.class.getName()).
+            log(Level.SEVERE, null, e);
+        }
         return listaGruppi;
+    }
+
+    /**
+     * @return the connectionString
+     */
+    public String getConnectionString()
+    {
+        return connectionString;
+    }
+
+    /**
+     * @param connectionString the connectionString to set
+     */
+    public void setConnectionString(String connectionString)
+    {
+        this.connectionString = connectionString;
     }
 }

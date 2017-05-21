@@ -65,7 +65,7 @@ and open the template in the editor.
                             </div>
                             <c:if test="${errpass == '1'}"></br><p>Conferma la password.</p></br></c:if>
                             <c:if test="${errpass == '2'}"></br><p>Le password devono corrispondere.</p></br></c:if>
-                            <button type="submit">Aggiorna</button>
+                            <button type="submit" name="confirm" value="1">Aggiorna</button>
                         </form>
                     </div>
                 </div>

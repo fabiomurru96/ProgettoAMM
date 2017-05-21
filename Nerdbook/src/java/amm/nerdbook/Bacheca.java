@@ -95,6 +95,7 @@ public class Bacheca extends HttpServlet {
             int group = Integer.parseInt(request.getParameter("group"));
             request.setAttribute("group", group);
             gruppo = GruppoFactory.getInstance().getById(group);
+            request.setAttribute("groupG", gruppo);
             request.setAttribute("posts", PostFactory.getInstance().getList(gruppo));
         }
         else 
@@ -130,7 +131,7 @@ public class Bacheca extends HttpServlet {
             
             if(request.getParameter("testo") != null)
             {
-                testo = request.getParameter("testo");
+                testo = new String(request.getParameter("testo").getBytes("ISO-8859-1"));
                 if(testo.equals(""))
                 {
                     request.setAttribute("err", "1");
@@ -155,7 +156,7 @@ public class Bacheca extends HttpServlet {
             
             if(request.getParameter("allegato") != null)
             {
-                allegato = request.getParameter("allegato");
+                allegato = new String(request.getParameter("allegato").getBytes("ISO-8859-1"));
                 if(!tipo.equals("NONE") && allegato.equals(""))
                 {
                     request.setAttribute("err", "2");
