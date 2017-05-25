@@ -322,8 +322,13 @@ input:not([type="submit"]):focus, textarea:focus{
     padding-top: 25px;
 }
 
-#delForm button{
+#delForm {
+    padding: 35px 0;
+}
+
+#delForm button {
     display: inline-block;
+    width: 67px;
 }
 
 #deleteProfile{
