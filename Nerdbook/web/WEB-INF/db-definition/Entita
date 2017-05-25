@@ -1,0 +1,9 @@
+Utenti: id, nome, cognome, username, password, urlFoto, frase, dataDiNascita, admin (per la creazione di un utente amministratore)
+
+Amici: Relazione tra utenti molti a molti
+
+UtentiGruppi: Relazione di iscrizione a un gruppo molti a molti
+
+Gruppi: id, nome, urlFoto
+
+Posts: id, autore, bacheca_id, gruppo_id, testo, tipoAllegato, allegato, bacheca_id è una chiave esterna che si collega all'id

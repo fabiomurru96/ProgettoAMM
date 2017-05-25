@@ -33,6 +33,7 @@ CREATE TABLE posts (
 	testo VARCHAR(512),
 	tipoAllegato INTEGER,
 	allegato VARCHAR(512),
+	FOREIGN KEY (autore) REFERENCES utenti (id),
 	FOREIGN KEY (bacheca_id) REFERENCES utenti (id),
 	FOREIGN KEY (gruppo_id) REFERENCES gruppi (id),
 	FOREIGN KEY (tipoAllegato) REFERENCES postType (id)
