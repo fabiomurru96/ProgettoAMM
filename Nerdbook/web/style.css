@@ -318,6 +318,24 @@ input:not([type="submit"]):focus, textarea:focus{
 .profile form{
     text-align: left;
     display: inline-block;
+    position: relative;
+    padding-top: 25px;
+}
+
+#delForm button{
+    display: inline-block;
+}
+
+#deleteProfile{
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-image: url("img/remove.png");
+    background-size: contain;
+    background-position: center;
+    background-color: white;
 }
 
 .campoFormProfilo{

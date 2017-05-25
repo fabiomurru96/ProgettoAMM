@@ -29,10 +29,22 @@ and open the template in the editor.
                 <jsp:include page="sidebar.jsp"/>
 
                 <div id="profileContent" class="content">
+                    
+                    <c:if test="${confermaDelete != null}">
+                        <div id="delForm" class="postType">
+                            <p>Sei sicuro di voler cancellare il tuo profilo?</p>
+                            <form action="profilo.html" method="post">
+                                <button type="submit" name="delete" value="true">Si.</button>
+                                <button type="submit" name="delete" value="false">Annulla.</button>
+                            </form>
+                        </div>
+                    </c:if>
+                    <c:if test="${confermaDelete == null}">
                     <div id="formdati" class="profile">
                         <div class="proPic">
                             <img src="${sessionScope.loggedUser.urlFoto}" alt="Foto profilo di ${sessionScope.loggedUser.nome} ${sessionScope.loggedUser.cognome}" title="${sessionScope.loggedUser.nome} ${sessionScope.loggedUser.cognome}"/>
                         </div>
+                        
                         <form action="profilo.html" method="post">
                             <c:if test="${done == '1'}"><p>Campi aggiornati</p></c:if>
                             <div class="campoFormProfilo" id="formNome">
@@ -65,9 +77,11 @@ and open the template in the editor.
                             </div>
                             <c:if test="${errpass == '1'}"></br><p>Conferma la password.</p></br></c:if>
                             <c:if test="${errpass == '2'}"></br><p>Le password devono corrispondere.</p></br></c:if>
-                            <button type="submit" name="confirm" value="1">Aggiorna</button>
+                            <button type="submit" name="confirm" value="1">Aggiorna</button> 
+                            <button id="deleteProfile" type="submit" name="confermaDelete" value="1" title="Cancella il profilo"></button>
                         </form>
                     </div>
+                    </c:if>
                 </div>
             </c:if>
         </div>

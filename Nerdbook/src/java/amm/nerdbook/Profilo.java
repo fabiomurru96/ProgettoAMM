@@ -57,6 +57,24 @@ public class Profilo extends HttpServlet {
         String psswd = (String) request.getParameter("psswd");
         String confirmpss = (String) request.getParameter("confirmpss");
         
+        if(request.getParameter("confermaDelete") != null || request.getParameter("delete") != null)
+        {
+            boolean delete = Boolean.parseBoolean(request.getParameter("delete"));
+            if(request.getParameter("delete") != null)
+            {
+                if(delete)
+                {
+                    UtenteFactory.getInstance().removeUser(u);
+                    session.invalidate();
+                    response.sendRedirect(request.getContextPath() + "/login.html");
+                    return;
+                }
+            }
+            else
+            {
+                request.setAttribute("confermaDelete",2);
+            }
+        }
         
         if(request.getParameter("confirm")!=null)
         {
@@ -106,7 +124,7 @@ public class Profilo extends HttpServlet {
             
             UtenteFactory.getInstance().updateUser(u);
             session.setAttribute("utenti", UtenteFactory.getInstance().getUsersList());
-            session.setAttribute("gruppi", GruppoFactory.getInstance().getGroupsList());
+            //session.setAttribute("gruppi", GruppoFactory.getInstance().getGroupsList());
                     
         }
             

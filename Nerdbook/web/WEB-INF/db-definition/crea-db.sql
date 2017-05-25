@@ -1,3 +1,5 @@
+--user: amm password: admin--
+
 CREATE DATABASE Nerdbook;
 
 CREATE TABLE utenti (
@@ -29,13 +31,13 @@ CREATE TABLE posts (
 	gruppo BOOLEAN,
 	testo VARCHAR(512),
 	tipoAllegato INTEGER,
-	allegato VARCHAR(512)
+	allegato VARCHAR(512),
 	FOREIGN KEY (tipoAllegato) REFERENCES postType (id)
 );
 
 CREATE TABLE amici (
 	idU1 INTEGER,
-	idU2 INTEGER
+	idU2 INTEGER,
 	FOREIGN KEY (idU1) REFERENCES utenti(id),
 	FOREIGN KEY (idU2) REFERENCES utenti(id),
 	PRIMARY KEY (idU1, idU2)
@@ -48,8 +50,6 @@ CREATE TABLE utentiGruppi (
 	FOREIGN KEY (id_gruppo) REFERENCES gruppi(id),
 	PRIMARY KEY (id_utente, id_gruppo)
 );
-
---user: amm password: admin--
 
 INSERT INTO utenti (id,nome,cognome,username,password,urlFoto,frase,dataDiNascita) VALUES (default,'Mario','Rossi','m.rossi1980','Hello123','img/propic.png','Ciao a tutti!','1/1/1980');
 INSERT INTO utenti (id,nome,cognome,username,password,urlFoto,dataDiNascita) VALUES (default,'Pinco','Pallino','p.pallino1992','Punto111','img/pincopallino.png','1/1/1992');

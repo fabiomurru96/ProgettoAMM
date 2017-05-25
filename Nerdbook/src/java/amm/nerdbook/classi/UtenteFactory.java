@@ -89,7 +89,7 @@ public class UtenteFactory {
                 utente.setFrase(set.getString("frase"));
                 
                 Date data = set.getDate("dataDiNascita");
-                utente.setDataDiNascita(new SimpleDateFormat("dd/mm/yyyy").format(data));
+                utente.setDataDiNascita((new SimpleDateFormat("dd/MM/yyyy")).format(data));
                 
                 utente.setPassword(set.getString("password"));
                 utente.setUrlFoto(set.getString("urlFoto"));
@@ -176,7 +176,7 @@ public class UtenteFactory {
                 utente.setFrase(set.getString("frase"));
                 
                 Date data = set.getDate("dataDiNascita");
-                utente.setDataDiNascita(new SimpleDateFormat("dd/mm/yyyy").format(data));
+                utente.setDataDiNascita(new SimpleDateFormat("dd/MM/yyyy").format(data));
                 
                 utente.setPassword(set.getString("password"));
                 utente.setUrlFoto(set.getString("urlFoto"));
@@ -241,16 +241,27 @@ public class UtenteFactory {
         {
             conn = DriverManager.getConnection(connectionString, "amm", "admin");  
             conn.setAutoCommit(false);
-            String post = "DELETE FROM posts WHERE bacheca_id = ? AND gruppo = false";
+            String post = "DELETE FROM posts WHERE autore = ? OR bacheca_id = ? AND gruppo = false";
+            String friend = "DELETE FROM amici WHERE idU1 = ? OR idU2 = ?";
+            String gruppo = "DELETE FROM utentiGruppi WHERE id_utente = ?";
             String user = "DELETE FROM utenti WHERE id = ?";
             
             removePost = conn.prepareStatement(post);
-            removeUser = conn.prepareStatement(user);
-            
             removePost.setInt(1, u.getId());
-            removeUser.setInt(1, u.getId());
-            
+            removePost.setInt(2, u.getId());
             removePost.executeUpdate();
+            
+            removeUser = conn.prepareStatement(friend);
+            removeUser.setInt(1, u.getId());
+            removeUser.setInt(2, u.getId());
+            removeUser.executeUpdate();
+            
+            removeUser = conn.prepareStatement(gruppo);
+            removeUser.setInt(1, u.getId());
+            removeUser.executeUpdate();
+            
+            removeUser = conn.prepareStatement(user);
+            removeUser.setInt(1, u.getId());
             removeUser.executeUpdate();
             
             conn.commit();
