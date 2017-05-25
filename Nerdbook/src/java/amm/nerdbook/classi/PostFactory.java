@@ -108,10 +108,12 @@ public class PostFactory
                 post.setId(id);
                 post.setTesto(set.getString("testo"));
                 post.setAutore(UtenteFactory.getInstance().getById(set.getInt("autore")));
-                if(set.getBoolean("gruppo"))
-                    post.setGruppo(GruppoFactory.getInstance().getById(set.getInt("bacheca_id")));
+                int bacheca = set.getInt("utente_id");
+                if(!set.wasNull())
+                    post.setUtente(UtenteFactory.getInstance().getById(bacheca));
                 else
-                    post.setUtente(UtenteFactory.getInstance().getById(set.getInt("bacheca_id")));
+                    post.setGruppo(GruppoFactory.getInstance().getById(set.getInt("bacheca_id")));
+                
                 post.setAutore(UtenteFactory.getInstance().getById(set.getInt("autore")));
                 post.setTesto(set.getString("testo"));
                 post.setTipoAllegato(Post.Type.valueOf(set.getString("name")));
@@ -153,9 +155,9 @@ public class PostFactory
             Connection conn = DriverManager.getConnection(connectionString, "amm", "admin");            
             String sql;
             if(p.getTipoAllegato() == Post.Type.NONE) 
-                sql = "INSERT INTO posts (id,autore,bacheca_id,gruppo,testo,tipoAllegato) VALUES (default,?,?,?,?,?)";
+                sql = "INSERT INTO posts (id,autore,bacheca_id,gruppo_id,testo,tipoAllegato) VALUES (default,?,?,?,?,?)";
             else
-                sql = "INSERT INTO posts (id,autore,bacheca_id,gruppo,testo,tipoAllegato,allegato) VALUES (default,?,?,?,?,?,?)";
+                sql = "INSERT INTO posts (id,autore,bacheca_id,gruppo_id,testo,tipoAllegato,allegato) VALUES (default,?,?,?,?,?,?)";
             
             
             PreparedStatement stat = conn.prepareStatement(sql);
@@ -163,12 +165,12 @@ public class PostFactory
             if(p.getGruppo()==null)
             {
                 stat.setInt(2,p.getUtente().getId());
-                stat.setBoolean(3, false);
+                stat.setNull(3, java.sql.Types.INTEGER);
             }
             else if(p.getUtente()==null)
             {
-                stat.setInt(2,p.getGruppo().getId());
-                stat.setBoolean(3, true);
+                stat.setNull(2, java.sql.Types.INTEGER);
+                stat.setInt(3,p.getGruppo().getId());
             }
             stat.setString(4,p.getTesto());
             stat.setInt(5,p.getTipoAllegato().getValue());
@@ -198,7 +200,7 @@ public class PostFactory
             try
             {
                 Connection conn = DriverManager.getConnection(connectionString, "amm", "admin");            
-                String sql = "SELECT * FROM posts JOIN postType ON tipoAllegato = postType.id WHERE posts.bacheca_id = ? AND posts.gruppo = false";
+                String sql = "SELECT * FROM posts JOIN postType ON tipoAllegato = postType.id WHERE posts.bacheca_id = ?";
 
                 PreparedStatement stat = conn.prepareStatement(sql);
                 stat.setInt(1,u.getId());
@@ -212,10 +214,7 @@ public class PostFactory
                     post.setId(u.getId());
                     post.setTesto(set.getString("testo"));
                     post.setAutore(UtenteFactory.getInstance().getById(set.getInt("autore")));
-                    if(set.getBoolean("gruppo"))
-                        post.setGruppo(GruppoFactory.getInstance().getById(set.getInt("bacheca_id")));
-                    else
-                        post.setUtente(UtenteFactory.getInstance().getById(set.getInt("bacheca_id")));
+                    post.setUtente(UtenteFactory.getInstance().getById(set.getInt("bacheca_id")));
                     post.setAutore(UtenteFactory.getInstance().getById(set.getInt("autore")));
                     post.setTesto(set.getString("testo"));
                     post.setTipoAllegato(Post.Type.valueOf(set.getString("name")));
@@ -300,7 +299,7 @@ public class PostFactory
             try
             {
                 Connection conn = DriverManager.getConnection(connectionString, "amm", "admin");            
-                String sql = "SELECT * FROM posts JOIN postType ON tipoAllegato = postType.id WHERE posts.bacheca_id = ? AND posts.gruppo = true";
+                String sql = "SELECT * FROM posts JOIN postType ON tipoAllegato = postType.id WHERE posts.gruppo_id = ?";
 
                 PreparedStatement stat = conn.prepareStatement(sql);
                 stat.setInt(1,g.getId());
@@ -314,10 +313,7 @@ public class PostFactory
                     post.setId(g.getId());
                     post.setTesto(set.getString("testo"));
                     post.setAutore(UtenteFactory.getInstance().getById(set.getInt("autore")));
-                    if(set.getBoolean("gruppo"))
-                        post.setGruppo(GruppoFactory.getInstance().getById(set.getInt("bacheca_id")));
-                    else
-                        post.setUtente(UtenteFactory.getInstance().getById(set.getInt("bacheca_id")));
+                    post.setGruppo(GruppoFactory.getInstance().getById(set.getInt("bacheca_id")));
                     post.setAutore(UtenteFactory.getInstance().getById(set.getInt("autore")));
                     post.setTesto(set.getString("testo"));
                     post.setTipoAllegato(Post.Type.valueOf(set.getString("name")));
