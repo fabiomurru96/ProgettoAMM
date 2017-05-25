@@ -6,4 +6,9 @@ UtentiGruppi: Relazione di iscrizione a un gruppo molti a molti
 
 Gruppi: id, nome, urlFoto
 
-Posts: id, autore, bacheca_id, gruppo_id, testo, tipoAllegato, allegato, bacheca_id è una chiave esterna che si collega all'id
+Posts: id, autore, bacheca_id, gruppo_id, testo, tipoAllegato, allegato 
+posts ha una relazione di uno a molti con utenti attraverso autore e bacheca_id e con gruppi attraverso gruppo_id
+
+PostType:id, name
+serve per immagazzinare i tipi di post e poterne aggiungerne all'occorrenza
+
