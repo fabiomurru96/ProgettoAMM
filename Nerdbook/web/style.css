@@ -173,6 +173,19 @@ nav li.active{
     background-color: rgba(0,0,0,0.1);
 }
 
+#ricerca{
+    margin: 10px;
+}
+
+#cerca{
+    width: 78%;
+}
+
+#cercaB{
+    width: 20%;
+    display: inline-block;
+}
+
 #personeSide, #gruppiSide{
     margin: 10px;
 }

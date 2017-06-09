@@ -84,17 +84,19 @@ public class GruppoFactory
         return null;*/
     }
 
-    public ArrayList<Gruppo> getGroupsList()
+    public ArrayList<Gruppo> getGroupsList(int id)
     {
         ArrayList<Gruppo> listaGruppi = new ArrayList<>();
         try
         {   
             Connection conn = DriverManager.getConnection(connectionString, "amm", "admin");            
 
-            String sql = "SELECT * FROM gruppi";
+            String sql = "SELECT g.* FROM utentigruppi JOIN utenti u ON id_utente=u.id JOIN gruppi g ON id_gruppo=g.id WHERE id_utente = ?";
             
             PreparedStatement stat = conn.prepareStatement(sql);
 
+            stat.setInt(1, id);
+            
             ResultSet set = stat.executeQuery();     
             
             while(set.next())

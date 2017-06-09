@@ -50,6 +50,20 @@ public class Bacheca extends HttpServlet {
         Utente utente = null;
         Gruppo gruppo = null;
         Post p;
+        
+        if(session.getAttribute("loggedIn") == null || session.getAttribute("loggedUser") == null)
+        {
+            session.invalidate();
+            request.setAttribute("error","403");
+            request.getRequestDispatcher("bacheca.jsp").forward(request, response);
+            return;
+        }
+        
+        int loggedUserId = ((Utente)session.getAttribute("loggedUser")).getId();
+        
+        request.setAttribute("utenti", UtenteFactory.getInstance().getUsersList(loggedUserId));
+        request.setAttribute("gruppi", GruppoFactory.getInstance().getGroupsList(loggedUserId));
+        
         if(request.getParameter("postC") != null)
         {
             try
@@ -82,13 +96,6 @@ public class Bacheca extends HttpServlet {
         }
          
         
-        if(session.getAttribute("loggedIn") == null || session.getAttribute("loggedUser") == null)
-        {
-            session.invalidate();
-            request.setAttribute("error","403");
-            request.getRequestDispatcher("bacheca.jsp").forward(request, response);
-            return;
-        }
         
         if(request.getParameter("group")!=null)
         {

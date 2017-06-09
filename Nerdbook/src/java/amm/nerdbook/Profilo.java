@@ -49,6 +49,11 @@ public class Profilo extends HttpServlet {
         
         Utente u = (Utente) session.getAttribute("loggedUser");
         
+        int loggedUserId = u.getId();
+        
+        request.setAttribute("utenti", UtenteFactory.getInstance().getUsersList(loggedUserId));
+        request.setAttribute("gruppi", GruppoFactory.getInstance().getGroupsList(loggedUserId));
+        
         String nome = (String) request.getParameter("nome");
         String cognome = (String) request.getParameter("cognome");
         String propic = (String) request.getParameter("propic");
@@ -123,7 +128,6 @@ public class Profilo extends HttpServlet {
             }
             
             UtenteFactory.getInstance().updateUser(u);
-            session.setAttribute("utenti", UtenteFactory.getInstance().getUsersList());
             //session.setAttribute("gruppi", GruppoFactory.getInstance().getGroupsList());
                     
         }

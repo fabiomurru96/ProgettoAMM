@@ -80,9 +80,6 @@ public class Login extends HttpServlet {
                     session.setAttribute("loggedIn", true);
                     session.setAttribute("loggedUser", loggedUser);
                     
-                    session.setAttribute("utenti", UtenteFactory.getInstance().getUsersList());
-                    session.setAttribute("gruppi", GruppoFactory.getInstance().getGroupsList());
-                    
                     if( (loggedUser.getNome()!=null&&loggedUser.getNome().equals(""))   ||
                         (loggedUser.getCognome()!=null&&loggedUser.getCognome().equals(""))||
                         (loggedUser.getUrlFoto()!=null&&loggedUser.getUrlFoto().equals(""))||

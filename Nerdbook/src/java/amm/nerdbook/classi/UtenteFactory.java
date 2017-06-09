@@ -153,17 +153,62 @@ public class UtenteFactory {
         return -1;*/
     }
     
-    public ArrayList<Utente> getUsersList()
+    public ArrayList<Utente> search(String s)
     {
         ArrayList<Utente> listaUtenti = new ArrayList<>();
         try
         {   
             Connection conn = DriverManager.getConnection(connectionString, "amm", "admin");            
 
-            String sql = "SELECT * FROM utenti";
+            String sql = "SELECT * FROM utenti where lower(nome) like lower(?) or lower(cognome) like lower(?);";
             
             PreparedStatement stat = conn.prepareStatement(sql);
 
+            stat.setString(1, s+'%');
+            stat.setString(2, s+'%');
+            
+            ResultSet set = stat.executeQuery();     
+            
+            while(set.next())
+            {
+                Utente utente = new Utente();
+            
+                utente.setId(set.getInt("id"));
+                utente.setNome(set.getString("nome"));
+                utente.setCognome(set.getString("cognome"));
+                utente.setFrase(set.getString("frase"));
+                
+                Date data = set.getDate("dataDiNascita");
+                utente.setDataDiNascita(new SimpleDateFormat("dd/MM/yyyy").format(data));
+                
+                utente.setPassword(set.getString("password"));
+                utente.setUrlFoto(set.getString("urlFoto"));
+                utente.setUsername(set.getString("username"));
+                listaUtenti.add(utente);
+            }
+            stat.close();
+            conn.close();      
+        }catch(SQLException e)
+        {
+            Logger.getLogger(UtenteFactory.class.getName()).
+            log(Level.SEVERE, null, e);
+        }
+        return listaUtenti;
+    }
+    
+    public ArrayList<Utente> getUsersList(int id)
+    {
+        ArrayList<Utente> listaUtenti = new ArrayList<>();
+        try
+        {   
+            Connection conn = DriverManager.getConnection(connectionString, "amm", "admin");            
+
+            String sql = "SELECT u2.* FROM amici JOIN utenti u1 ON idU1=u1.id JOIN utenti u2 ON idU2=u2.id WHERE idU1 = ?";
+            
+            PreparedStatement stat = conn.prepareStatement(sql);
+
+            stat.setInt(1, id);
+            
             ResultSet set = stat.executeQuery();     
             
             while(set.next())
@@ -241,7 +286,7 @@ public class UtenteFactory {
         {
             conn = DriverManager.getConnection(connectionString, "amm", "admin");  
             conn.setAutoCommit(false);
-            String post = "DELETE FROM posts WHERE autore = ? OR bacheca_id = ? AND gruppo = false";
+            String post = "DELETE FROM posts WHERE autore = ? OR bacheca_id = ?";
             String friend = "DELETE FROM amici WHERE idU1 = ? OR idU2 = ?";
             String gruppo = "DELETE FROM utentiGruppi WHERE id_utente = ?";
             String user = "DELETE FROM utenti WHERE id = ?";
