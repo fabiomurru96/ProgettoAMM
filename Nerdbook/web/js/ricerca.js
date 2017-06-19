@@ -7,6 +7,7 @@
 
 $(document).ready(function ()
 {
+    backupP = $("#personeSide").clone();
     $("#cerca").keyup(function ()
     {
         console.log($("#cerca").val());
@@ -27,34 +28,43 @@ $(document).ready(function ()
 
 function updateSidebar(result)
 {
-    $("#gruppiSide").remove();
+    $("#gruppiSide").hide();
+    
     $("#personeSide").empty();
+
     
-    var div = document.createElement("div");
-    
-    for(var u in result)
+    if($("#cerca").val()!=="")
     {
-        var utente = document.createElement("a");
-        var divVuoto = document.createElement("div");
-        var divProPic = document.createElement("div");
-        var proPic = document.createElement("img");
-        var nome = document.createElement("p");
-        
-        $(proPic).attr("src",u.urlFoto);
-        
-        $(divProPic).addClass("proPic");
-        $(divProPic).prepend(proPic);
-        
-        $(nome).text(u.nome + " " + u.cognome);
-        
-        $(utente).attr("href", "bacheca.html?user="+u.id);
-        
-        $(utente).prepend(divProPic);
-        $(utente).append(nome);
-        $(div).append(utente);
+        var div = document.createElement("div");
+
+        for(var i = 0; i<result.length; i++)
+        {
+            var utente = document.createElement("a");
+            var divVuoto = document.createElement("div");
+            var divProPic = document.createElement("div");
+            var proPic = document.createElement("img");
+            var nome = document.createElement("p");
+
+            $(proPic).attr("src",result[i].urlFoto);
+
+            $(divProPic).addClass("proPic");
+            $(divProPic).prepend(proPic);
+
+            $(nome).text(result[i].nome + " " + result[i].cognome);
+
+            $(utente).attr("href", "bacheca.html?user="+result[i].id);
+
+            $(utente).prepend(divProPic);
+            $(utente).append(nome);
+            $(div).append(utente);
+        }
+
+        $("#personeSide").append(div);
     }
-    
-    $("#personeSide").append(div);
-    
+    else
+    {
+        $("#personeSide").replaceWith(backupP.clone());
+        $("#gruppiSide").show();
+    }
     
 }

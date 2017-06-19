@@ -14,7 +14,7 @@
             <json:property name="id" value="${user.id}"/>
             <json:property name="nome" value="${user.nome}"/>
             <json:property name="urlFoto" value="${user.urlFoto}"/>
-            <json:property name="cognome" value="${user.text}"/>
+            <json:property name="cognome" value="${user.cognome}"/>
         </json:object>
-    </c:foreach>
+    </c:forEach>
 </json:array>

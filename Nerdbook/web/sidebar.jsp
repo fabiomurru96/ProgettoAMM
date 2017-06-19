@@ -12,10 +12,10 @@
 
 
 <div id="sideBar">
-    <form action="" id="ricerca" method="post">
+    <div id="ricerca">
         <input type="text" name="cerca" id="cerca" placeholder="Ricerca..."/>
         <button type="submit" id="cercaB">Cerca</button>
-    </form>
+    </div>
     <div id="personeSide">
         <h2 class="sideTitle">Persone</h2>
         <div>

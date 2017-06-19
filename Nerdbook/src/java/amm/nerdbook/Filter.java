@@ -39,9 +39,14 @@ public class Filter extends HttpServlet
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-        ArrayList<Utente> res = UtenteFactory.getInstance().search(request.getParameter("q"));
         
-        request.setAttribute("result", res);
+        String ricerca = request.getParameter("q");
+        
+        if(!ricerca.equals(""))
+        {
+            ArrayList<Utente> res = UtenteFactory.getInstance().search(ricerca);
+            request.setAttribute("result", res);
+        }
         
         response.setContentType("application/json");
         response.setHeader("Expires", "Sat, 6 May 1995 12:00:00 GMT");

@@ -160,7 +160,7 @@ public class UtenteFactory {
         {   
             Connection conn = DriverManager.getConnection(connectionString, "amm", "admin");            
 
-            String sql = "SELECT * FROM utenti where lower(nome) like lower(?) or lower(cognome) like lower(?);";
+            String sql = "SELECT * FROM utenti where lower(nome) like lower(?) or lower(cognome) like lower(?)";
             
             PreparedStatement stat = conn.prepareStatement(sql);
 
