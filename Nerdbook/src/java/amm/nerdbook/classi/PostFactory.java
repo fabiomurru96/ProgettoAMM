@@ -130,7 +130,7 @@ public class PostFactory
             
         }catch(SQLException e)
         {
-            Logger.getLogger(UtenteFactory.class.getName()).
+            Logger.getLogger(PostFactory.class.getName()).
             log(Level.SEVERE, null, e);
         }
         

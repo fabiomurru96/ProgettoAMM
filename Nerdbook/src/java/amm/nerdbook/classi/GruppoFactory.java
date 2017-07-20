@@ -68,7 +68,7 @@ public class GruppoFactory
             
         }catch(SQLException e)
         {
-            Logger.getLogger(UtenteFactory.class.getName()).
+            Logger.getLogger(GruppoFactory.class.getName()).
             log(Level.SEVERE, null, e);
         }
         
@@ -113,7 +113,7 @@ public class GruppoFactory
             conn.close();      
         }catch(SQLException e)
         {
-            Logger.getLogger(UtenteFactory.class.getName()).
+            Logger.getLogger(GruppoFactory.class.getName()).
             log(Level.SEVERE, null, e);
         }
         return listaGruppi;
